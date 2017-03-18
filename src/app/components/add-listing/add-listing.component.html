@@ -1,0 +1,57 @@
+<h2 class="page-header">Add Listing</h2>
+
+<div class="row">
+  <div class="col-lg-12">
+    <form (submit)="onAddSubmit()">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="title" [(ngModel)]="title" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" name="city" [(ngModel)]="city" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Owner</label>
+        <input type="text" name="owner" [(ngModel)]="owner" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Bedrooms</label>
+        <input type="number" name="bedrooms" [(ngModel)]="bedrooms" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Type</label>
+        <select type="text" name="type" [(ngModel)]="type" class="form-control" required>
+          <option value="Estate">Estate</option>
+          <option value="Condo">Condo</option>
+          <option value="Apartment">Apartment</option>
+        </select>
+      </div>
+      <div class="form-group" [class.has-warning]="invalidImageSize">
+        
+        <div class="col-md-8">
+          <label>Image</label>
+          <input type="file" id="image" name="image" (change)="verifyImg(img)" #img [(ngModel)]="image" required>
+          <span *ngIf="validImage" class="help-block">The image size limit is 2MB.</span>
+          <span *ngIf="!validImage" class="help-block alert-warning">Your image size is larger than 2MB in file size.</span>
+        </div>
+
+        <div [hidden]="!imgReader" class="col-md-4">
+          <label>Image</label>
+          <div *ngIf="imgReader" class="img-wrapper"> 
+            <img class="img-responsive" src="{{imgReader}}">
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+      
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input type="text" name="price" [(ngModel)]="price" class="form-control" required>
+      </div>
+      <input [disabled]="!validSubmit" type="submit" value="Add" class="btn btn-success">
+      <a class="btn btn-primary" [routerLink]="['/listings']">Go Back</a>
+    </form>
+  </div>
+</div>

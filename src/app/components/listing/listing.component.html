@@ -1,0 +1,40 @@
+<div *ngIf="listing">
+
+  <h2 class="page-header">{{listing.title}} <small>{{listing.city}}</small></h2>
+
+  <div class="row vertical-align">
+    <div class="col-md-5">
+      <div *ngIf="listing.imageUrl" class="img-wrapper"> 
+        <img class="img-responsive" src="{{listing.imageUrl}}">
+      </div>
+      <img-loader *ngIf="!listing.imageUrl"></img-loader>
+    </div>
+    <div class="col-md-7">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>{{listing.title}}</strong></h3>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item"><strong>City:</strong> {{listing.city}}</li>
+          <li class="list-group-item"><strong>Owner:</strong> {{listing.owner}}</li>
+          <li class="list-group-item"><strong>Bedrooms:</strong> {{listing.bedrooms}}</li>
+          <li class="list-group-item"><strong>Type:</strong> {{listing.type}}</li>
+          <li class="list-group-item"><strong>Price:</strong> {{listing.price}}</li>
+        </ul>
+      </div>
+      <a class="btn btn-default" [routerLink]="['/edit-listing/'+listing.$key]">Edit</a>
+      <a class="btn btn-danger" (click)="deleteListing()">Delete</a>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <a class="btn btn-primary" [routerLink]="['/listings']">Go Back</a>
+    </div>
+  </div>
+
+</div>
+
+<img-loader *ngIf="!listing"></img-loader>

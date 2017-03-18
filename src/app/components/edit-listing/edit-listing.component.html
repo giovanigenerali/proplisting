@@ -1,0 +1,67 @@
+<h2 class="page-header">Edit Listing</h2>
+
+<div class="row">
+  <div class="col-lg-12">
+    <form (submit)="onEditSubmit()">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="title" [(ngModel)]="listing.title" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" name="city" [(ngModel)]="listing.city" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Owner</label>
+        <input type="text" name="owner" [(ngModel)]="listing.owner" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Bedrooms</label>
+        <input type="number" name="bedrooms" [(ngModel)]="listing.bedrooms" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Type</label>
+        <select type="text" name="type" [(ngModel)]="listing.type" class="form-control" required>
+          <option value="Estate">Estate</option>
+          <option value="Condo">Condo</option>
+          <option value="Apartment">Apartment</option>
+        </select>
+      </div>
+      <div class="form-group">
+        
+        <div class="col-md-4">
+          <label>Image</label>
+          <input type="file" id="image" (change)="verifyImg(img)" #img name="image">
+          <input type="hidden" id="imageUrl" name="imageUrl" [(ngModel)]="listing.imageUrl">
+          <span *ngIf="validImage" class="help-block">The image size limit is 2MB.</span>
+          <span *ngIf="!validImage" class="help-block alert-warning">Your image size is larger than 2MB in file size.</span>
+        </div>
+        
+        <div class="col-md-4">
+          <div [hidden]="!imgReader">
+            <label>New Image</label>
+            <div *ngIf="imgReader" class="img-wrapper"> 
+              <img class="img-responsive" src="{{imgReader}}">
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <label>Image</label>
+          <div *ngIf="listing.imageUrl" class="img-wrapper"> 
+            <img class="img-responsive" src="{{listing.imageUrl}}">
+          </div>
+          <img-loader *ngIf="!listing.imageUrl"></img-loader>
+        </div>
+        
+        <div class="clearfix"></div>
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input type="text" name="price" [(ngModel)]="listing.price" class="form-control" required>
+      </div>
+      <input [disabled]="!validSubmit" type="submit" value="Update" class="btn btn-success">
+      <a class="btn btn-primary" (click)="goBack()">Go Back</a>
+    </form>
+  </div>
+</div>

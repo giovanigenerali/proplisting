@@ -1,0 +1,9 @@
+.img-wrapper {
+  display: block;
+  min-width: 20rem;
+  min-height: 20rem;
+}
+.img-wrapper img {
+  width: 100%;
+  min-height: 20rem;
+}

@@ -1,0 +1,11 @@
+ 
+<div *ngIf="listings">
+  <h2 class="page-header">Listings</h2>
+  <div class="list-group">
+    <a [routerLink]="['/listings/'+listing.$key]" *ngFor="let listing of listings" class="list-group-item">
+    {{listing.title}}
+    </a>
+  </div>
+</div>
+
+<img-loader *ngIf="!listings"></img-loader>
